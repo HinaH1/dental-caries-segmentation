@@ -147,20 +147,6 @@ All models were evaluated on the held-out test set (358 images), which played no
 
 ---
 
-## Phase Two Results Summary
-
-| Model | Precision | Recall | F1 | mAP@0.5 | mAP@0.5:0.95 |
-|---|---|---|---|---|---|
-| YOLOv8n Detection | — | 0.832 | — | 0.861 | 0.531 |
-| YOLOv8n-seg (detection component) | — | 0.845 | — | 0.870 | 0.557 |
-| YOLOv8n-seg (segmentation component) | — | — | — | 0.857 | 0.508 |
-| YOLO26n-seg (detection component) | — | 0.789 | — | — | — |
-| YOLO26n-seg (segmentation component) | — | — | — | 0.847 | — |
-
-All three models outperform FastInst, the best non-YOLO model in the Dang et al. benchmark, across every metric. YOLOv8n-seg produces the strongest overall results. YOLO26n-seg, despite being the more recent architecture, falls below YOLOv8n-seg on every metric, extending the finding of Lam et al. (2025) that newer YOLO versions do not necessarily outperform older ones for this task.
-
----
-
 ## Reproducibility
 
 ### Phase One
@@ -175,7 +161,7 @@ Phase One notebooks are self-contained and run on Google Colab. Open each notebo
 
 ### Phase Two
 
-Phase Two requires the CariXray dataset, which must be requested directly from Dang et al. Once obtained, run the preparation scripts to reorganise the data into YOLO format:
+Phase Two requires the CariXray dataset, which must be requested directly from Dang et al. Once obtained, run the preparation scripts to reorganise the data into YOLO format, please not the location of the files must be updated manually within the script prior to running:
 
 ```bash
 python data_preparation/prepare_detection.py
