@@ -24,16 +24,19 @@ The project is structured in two phases. Phase One develops and validates the ex
 dental-caries-segmentation/
 │
 ├── phase_one/
-│   ├── experiment_one_yolov8_detection/
-│   ├── experiment_two_yolov8_seg/
-│   └── experiment_three_yolo26_seg/
+│   ├── initial_experiment_one_ipnyb.ipynb
+│   ├── experiment_two_YOLOv8_seg.ipynb
+│   └── experiment_three_YOLO26_seg.ipynb
 │
 ├── phase_two/
-│   ├── experiment_one/
-│   ├── experiment_two/
-│   └── experiment_three/
-│
-│
+│   ├── experiment_one.py
+│   ├── experiment_two.py
+│   ├── experiment_three.py
+│   └── data_setup/ 
+│          ├── detection_data_setup.py
+│          └──segmentation_data_setup.py
+│ 
+│           
 ├── requirements.txt
 ├── README.md
 └── LICENSE
