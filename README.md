@@ -144,7 +144,7 @@ All experiments were evaluated using the same five metrics reported by Dang et a
 - **Recall** — fraction of true lesions successfully detected
 - **F1-score** — harmonic mean of Precision and Recall
 - **mAP@0.5** — mean Average Precision at 50% IoU overlap threshold
-- **mAP@0.5:0.95** — mean Average Precision averaged across IoU thresholds from 50% to 95%
+- **mAP@0.5-0.95** — mean Average Precision averaged across IoU thresholds from 50% to 95%
 
 All models were evaluated on the held-out test set (358 images), which played no part in any training or configuration decisions.
 
