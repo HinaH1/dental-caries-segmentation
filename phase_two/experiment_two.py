@@ -60,9 +60,18 @@ results = model.train(
 
 print("Training complete")
 
-# Evaluate on the validation set using the best weights from training
-# Full test set evaluation is reported in the results chapter
-metrics = model.val()
+# Load the best weights saved during training and evaluate on the test set
+# The test set was kept completely separate from training and validation
+model = YOLO('/usr/tmp/final_year_project/EXPERIMENT2/yolov8n_caries_seg/weights/best.pt')
 
-print("Validation complete")
-print(metrics)
+metrics = model.val(
+    data='/usr/tmp/final_year_project/SEGMENTATION/SEGMENTATION/data.yaml',
+    split='test'
+)
+
+# Print the test set results
+print("\nTest Set Results:")
+print(f"Precision:  {metrics.box.mp:.4f}")
+print(f"Recall:     {metrics.box.mr:.4f}")
+print(f"mAP50:      {metrics.box.map50:.4f}")
+print(f"mAP50-95:   {metrics.box.map:.4f}")
