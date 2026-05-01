@@ -4,14 +4,12 @@ experiment_three.py
 This script runs Experiment Three of Phase Two - YOLO26-seg instance 
 segmentation on the CariXray dataset.
 
-This experiment builds on from experiment two this time instead running YOLO 
+This experiment builds on from experiment Two this time instead running YOLO 
 version 26 on the dataset
-
 
 A different seed to Experiment two is used as each experiment is treated 
 as an independent training run. The results are evaluated on the same 
-held-out test set to allow direct comparison with Experiment Two and 
-against the Dang et al. benchmark.
+held-out test set to allow direct comparison with Experiment Two .
 
 Author: HinaH1
 """
@@ -45,14 +43,15 @@ print("YOLO26 segmentation model loaded successfully")
 
 # Train
 results = model.train(
-    data="/usr/tmp/final_year_project/SEGMENTATION/data.yaml",
-    epochs=100,
+    data="/usr/tmp/trial/SEGMENTATION/data.yaml",
+    epochs=200,
     imgsz=640,
-    batch=16,
+    batch=8,
+    patience = 20,
     seed=SEED,
     device=0,
-    project="/var/tmp/final_year_project/EXPERIMENT3",
-    name="yolo26n_caries_seg",
+    project="/var/tmp/trial/EXPERIMENT3",
+    name="yolo26_caries_seg",
     exist_ok=True,
 )
 
@@ -60,10 +59,10 @@ print("Training complete")
 
 # Load the best weights saved during training and evaluate on the test set
 # The test set was kept completely separate from training and validation
-model = YOLO('/usr/tmp/final_year_project/EXPERIMENT3/yolo26n_caries_seg/weights/best.pt')
+model = YOLO('/usr/tmp/trial/EXPERIMENT3/yolo26_caries_seg/weights/best.pt')
 
 metrics = model.val(
-    data='/usr/tmp/final_year_project/SEGMENTATION/SEGMENTATION/data.yaml',
+    data='/usr/tmp/trial/SEGMENTATION/SEGMENTATION/data.yaml',
     split='test'
 )
 
