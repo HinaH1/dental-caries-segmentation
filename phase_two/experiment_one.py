@@ -39,13 +39,14 @@ model = YOLO('yolov8n.pt')
 
 # Train the model
 results = model.train(
-    data='/usr/tmp/final_year_project/DETECTION/DETECTION/data.yaml',
-    epochs=100,
+    data='/usr/tmp/trial/DETECTION/DETECTION/data.yaml',
+    epochs=200,
     imgsz=640,
-    batch=16,
-    seed=42,
+    batch=8,
+    patience = 20,
+    seed=23,
     device=0,
-    project='/usr/tmp/final_year_project/EXPERIMENT1',
+    project='/usr/tmp/trial/EXPERIMENT1',
     name='yolov8n_caries_detection',
     exist_ok=True
 )
@@ -57,7 +58,7 @@ print("Training complete")
 model = YOLO('/usr/tmp/final_year_project/EXPERIMENT1/yolov8n_caries_detection/weights/best.pt')
 
 metrics = model.val(
-    data='/usr/tmp/final_year_project/DETECTION/DETECTION/data.yaml',
+    data='/usr/tmp/trial/DETECTION/DETECTION/data.yaml',
     split='test'
 )
 
