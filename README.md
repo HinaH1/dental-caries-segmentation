@@ -10,10 +10,10 @@ The project is structured in two phases. Phase One develops and validates the ex
 
 ## Research Objectives
 
-- Develop a YOLOv8 object detection model to establish a bounding box detection baseline for caries localisation
-- Develop a YOLOv8-seg instance segmentation model to produce pixel-level lesion masks
-- Develop a YOLO26-seg instance segmentation model and compare its performance against YOLOv8-seg
-- Evaluate and compare all three models against the published CariXray benchmark of Dang et al.
+- To develop and implement an object detection model to identify dental caries in radiographic images.
+- To develop and implement an instance segmentation model to achieve more precise localisation of affected regions.
+- To develop and implement a second segmentation model using a more recent architecture and compare its performance against the first.
+- To evaluate and compare the performance of the models using standard metrics.
 - Identify limitations and propose directions for future work
 
 ---
@@ -94,7 +94,7 @@ Three experiments were conducted on CariXray using the configuration informed by
 2. **Experiment Two — YOLOv8n-seg**
 3. **Experiment Three — YOLO26n-seg**
 
-All Phase Two experiments used 100 epochs, 640px image size, batch size 16, and no early stopping, matching the Dang et al. benchmark configuration to ensure comparability.
+All Phase Two experiments used 200 epochs, 640px image size, batch size 8, patience value 20.
 
 ---
 
@@ -102,7 +102,7 @@ All Phase Two experiments used 100 epochs, 640px image size, batch size 16, and 
 
 | Model | Task | Variant | Rationale |
 |---|---|---|---|
-| YOLOv8n | Object Detection | Nano | Establishes detection baseline; matches Dang et al. config |
+| YOLOv8n | Object Detection | Nano | Establishes detection baseline |
 | YOLOv8n-seg | Instance Segmentation | Nano | Strong literature performance; evaluated in Dang et al. benchmark |
 | YOLO26n-seg | Instance Segmentation | Nano | Most recent YOLO architecture; not previously evaluated in dental imaging |
 
@@ -126,10 +126,10 @@ All models were accessed through the [Ultralytics](https://github.com/ultralytic
 
 | Parameter | All Experiments |
 |---|---|
-| Epochs | 100 |
+| Epochs | 200 |
 | Image size | 640px |
-| Batch size | 16 |
-| Early stopping | No |
+| Batch size | 8 |
+| Early stopping | Yes, patience 20 |
 | Environment | NVIDIA RTX 4070 (12GB VRAM), Python 3.9, CUDA 13.1 |
 
 Random seeds: Experiment One = 42, Experiment Two = 123, Experiment Three = 54.
@@ -146,7 +146,7 @@ All experiments were evaluated using the same five metrics reported by Dang et a
 - **mAP@0.5** — mean Average Precision at 50% IoU overlap threshold
 - **mAP@0.5-0.95** — mean Average Precision averaged across IoU thresholds from 50% to 95%
 
-All models were evaluated on the held-out test set (358 images), which played no part in any training or configuration decisions.
+All phase two models were evaluated on the held-out test set (358 images), which played no part in any training or configuration decisions.
 
 ---
 
